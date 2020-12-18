@@ -10,7 +10,7 @@ into where you want your breakpoint to be.
 """
 
 bl_info = {
-	"name": "Magic Angles Animator",
+	"name": "Liftout Animator",
 	"description": "Animator for Magic Angles in FIB lift-out needles.",
 	"author": "Aleksander B. Mosberg",
 	"version": 5,
