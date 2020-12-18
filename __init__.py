@@ -1,5 +1,6 @@
 import bpy
 from bpy.app.handlers import persistent
+from . import loa
 
 @persistent
 def load_handler_for_preferences(_):
@@ -12,7 +13,7 @@ def load_handler_for_preferences(_):
     kc = context.window_manager.keyconfigs["blender"]
     kc_prefs = kc.preferences
     if kc_prefs is not None:
-        kc_prefs.select_mouse = 'RIGHT'
+        kc_prefs.select_mouse = 'LEFT'
         kc_prefs.spacebar_action = 'SEARCH'
         kc_prefs.use_pie_click_drag = True
 
@@ -27,7 +28,7 @@ def load_handler_for_startup(_):
     # Use smooth faces.
     for mesh in bpy.data.meshes:
         for poly in mesh.polygons:
-            poly.use_smooth = True
+            poly.use_smooth = False
 
     # Use material preview shading.
     for screen in bpy.data.screens:
@@ -42,8 +43,11 @@ def register():
     print("Registering to Change Defaults")
     bpy.app.handlers.load_factory_preferences_post.append(load_handler_for_preferences)
     bpy.app.handlers.load_factory_startup_post.append(load_handler_for_startup)
+    loa.register()
+
 
 def unregister():
     print("Unregistering to Change Defaults")
     bpy.app.handlers.load_factory_preferences_post.remove(load_handler_for_preferences)
     bpy.app.handlers.load_factory_startup_post.remove(load_handler_for_startup)
+    loa.unregister()
