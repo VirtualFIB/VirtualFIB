@@ -9,7 +9,9 @@ Install and run Blender, then click the blender icon in the top left toolbar and
 
 Select the downloaded .zip and install. Restart Blender and on the splashscreen select 'Liftout Animator'. Alternatively, in an open Blender window, select File>New>Liftout Animator
 
+## Fork and modify
 
+The whole repo can be cloned into the right location, see link to documentation on where to find it below. On windows, if you've previously installed application templates (on a new system, just install it like described above first so Blender automatically creates the folders) navigate to 'Username'/AppData/Roaming/Blender Foundation/Blender/'version'/scripts/startup/bl_app_templates_user.
 
 ### Useful links
 
