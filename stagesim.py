@@ -19,10 +19,12 @@ from math import radians as rad
 def stage_moved(self, context):
 	# bpy.data.objects['Stage'].pose.bones['Tilt axis'], "rotation_quaternion")
 	props = bpy.context.scene.StageSim_pointer
-	bones = bpy.data.objects['Stage'].pose.bones
-	bones['T bone'].rotation_quaternion[1] = rad(props.stage_t)
-	bones['R bone'].rotation_quaternion[2] = rad(props.stage_r)
-	bones['XYZ bone'].location = [-props.stage_x, props.stage_z, props.stage_y]
+	bones = bpy.data.objects['Stage Armature'].pose.bones
+	bones["T Bone"].rotation_mode = "XYZ"
+	bones["T Bone"].rotation_euler[0] = rad(props.stage_t)
+	bones["R Bone"].rotation_mode = "XYZ"
+	bones["R Bone"].rotation_euler[1] = rad(props.stage_r)
+	bones["XYZ Bone"].location = [-props.stage_x, props.stage_z, props.stage_y]
 
 class ZeroStage(bpy.types.Operator):
 	bl_idname = "object.zero_stage"
@@ -109,16 +111,31 @@ class StageSimPanel(bpy.types.Panel):
 		row1.prop(pointer, "stage_r")
 
 		layout.operator("object.zero_stage")
+		layout.operator("wm.change_to_liftout")
+
+class ChangeToLiftout(bpy.types.Operator):
+	bl_idname = "wm.change_to_liftout"
+	bl_label = "Change to Liftout Animator"
+
+	def execute(self, context):
+		
+		bpy.context.window.scene = bpy.data.scenes["Liftout Scene"]
+		bpy.context.window.workspace = bpy.data.workspaces['Liftout Animator']
+
+		return {'FINISHED'}
+
 
 def register():
 
 	bpy.utils.register_class(StageSimProps)
 	bpy.types.Scene.StageSim_pointer = bpy.props.PointerProperty(type=StageSimProps)
 	bpy.utils.register_class(ZeroStage)
+	bpy.utils.register_class(ChangeToLiftout)
 	bpy.utils.register_class(StageSimPanel)
 
 def unregister():
 	bpy.utils.unregister_class(StageSimPanel)
+	bpy.utils.unregister_class(ChangeToLiftout)
 	bpy.utils.unregister_class(ZeroStage)
 	del bpy.types.Scene.StageSim_pointer
 	bpy.utils.register_class(StageSimProps)

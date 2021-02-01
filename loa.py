@@ -490,7 +490,7 @@ class MagicAnglesAnimatorPanel(bpy.types.Panel):
 	bl_idname = "OBJECT_PT_MAA_panel"
 	bl_space_type = "VIEW_3D"
 	bl_region_type = "UI"
-	bl_category = "Item"
+	bl_category = "Liftout Animator"
 	bl_label = "Magic Angles Animator"
 	# bl_context = "scene"
 
