@@ -553,6 +553,18 @@ class MagicAnglesAnimatorPanel(bpy.types.Panel):
   #       row.prop(, "frame_start")
   #       row.prop(scene, "frame_end")
 
+class ChangeToStageSim(bpy.types.Operator):
+	bl_idname = "wm.change_to_stagesim"
+	bl_label = "Change to Stage Simulator"
+
+	def execute(self, context):
+		
+		bpy.context.window.scene = bpy.data.scenes["StageSim Scene"]
+		bpy.context.window.workspace = bpy.data.workspaces['Stage Simulator']
+
+		return {'FINISHED'}
+
+
 # ------------------------------------------------------------------------
 # register and unregister
 # ------------------------------------------------------------------------

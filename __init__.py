@@ -1,6 +1,6 @@
 import bpy
 from bpy.app.handlers import persistent
-from . import loa
+from . import loa, stagesim
 
 @persistent
 def load_handler_for_preferences(_):
@@ -44,6 +44,7 @@ def register():
     bpy.app.handlers.load_factory_preferences_post.append(load_handler_for_preferences)
     bpy.app.handlers.load_factory_startup_post.append(load_handler_for_startup)
     loa.register()
+    stagesim.register()
 
 
 def unregister():
@@ -51,3 +52,4 @@ def unregister():
     bpy.app.handlers.load_factory_preferences_post.remove(load_handler_for_preferences)
     bpy.app.handlers.load_factory_startup_post.remove(load_handler_for_startup)
     loa.unregister()
+    stagesim.unregister()
