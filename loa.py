@@ -196,7 +196,7 @@ class MAASettings(bpy.types.PropertyGroup):
 
 class RestoreDefaults(bpy.types.Operator):
 	bl_idname = "wm.restore_defaults"
-	bl_label = "Restore Default MAA Values"
+	bl_label = "Restore Liftout Defaults"
 
 	def execute(self, context):
 
@@ -242,9 +242,9 @@ class MagicAnglesAnimator(bpy.types.Operator):
 		scn = bpy.context.scene
 		scn.frame_start = 1
 
-		if bpy.context.scene.view_layers['RenderLayer'].layer_collection.children['Cross-section lamella'].exclude == True:
+		if bpy.context.scene.view_layers["View Layer"].layer_collection.children['Cross-section Lamella'].exclude == True:
 			planview = True
-			bpy.context.scene.view_layers['RenderLayer'].layer_collection.children['Cross-section lamella'].exclude = False
+			bpy.context.scene.view_layers["View Layer"].layer_collection.children['Cross-section Lamella'].exclude = False
 		else: 
 			planview = False
 
@@ -420,7 +420,7 @@ class MagicAnglesAnimator(bpy.types.Operator):
 			item.select_set(True)
 
 		if planview is True:
-			bpy.context.scene.view_layers['RenderLayer'].layer_collection.children['Cross-section lamella'].exclude = True
+			bpy.context.scene.view_layers['View Layer'].layer_collection.children['Cross-section lamella'].exclude = True
 
 		return {'FINISHED'}
 
@@ -486,6 +486,19 @@ class ShowAngleComponents(bpy.types.Operator):
 
 		return {'FINISHED'}
 
+
+class ChangeToStageSim(bpy.types.Operator):
+	bl_idname = "wm.change_to_stagesim"
+	bl_label = "Change to Stage Simulator"
+
+	def execute(self, context):
+		
+		bpy.context.window.scene = bpy.data.scenes["StageSim Scene"]
+		bpy.context.window.workspace = bpy.data.workspaces['Stage Simulator']
+
+		return {'FINISHED'}
+
+
 class MagicAnglesAnimatorPanel(bpy.types.Panel):
 	bl_idname = "OBJECT_PT_MAA_panel"
 	bl_space_type = "VIEW_3D"
@@ -514,11 +527,12 @@ class MagicAnglesAnimatorPanel(bpy.types.Panel):
 		row.operator("wm.magic_angles_animator", icon="CAMERA_DATA")
 		row2 = layout.row()
 		row2.scale_y = 1.2
-		row2.operator("wm.show_angle_components")
+		# row2.operator("wm.show_angle_components")
 		
 		layout.operator('wm.lamella_position_reset')
 		layout.operator("wm.restore_defaults")
 		layout.operator("ANIM_OT_keyframe_clear_v3d")
+		layout.operator("wm.change_to_stagesim")
 
 		box = layout.box()
 		row = box.row()
@@ -537,7 +551,7 @@ class MagicAnglesAnimatorPanel(bpy.types.Panel):
 			row3.prop(mytool, "live_update")
 			# row3.prop(mytool, "follow_lamella")
 			box.prop(mytool, "finish_on_frame")
-			box.prop(mytool, "rotation_mode")
+			# box.prop(mytool, "rotation_mode")
 			box.prop(mytool, "printout_mode")
 			box.prop(mytool, "insert_needle")
 
@@ -553,18 +567,6 @@ class MagicAnglesAnimatorPanel(bpy.types.Panel):
   #       row.prop(, "frame_start")
   #       row.prop(scene, "frame_end")
 
-class ChangeToStageSim(bpy.types.Operator):
-	bl_idname = "wm.change_to_stagesim"
-	bl_label = "Change to Stage Simulator"
-
-	def execute(self, context):
-		
-		bpy.context.window.scene = bpy.data.scenes["StageSim Scene"]
-		bpy.context.window.workspace = bpy.data.workspaces['Stage Simulator']
-
-		return {'FINISHED'}
-
-
 # ------------------------------------------------------------------------
 # register and unregister
 # ------------------------------------------------------------------------
@@ -577,6 +579,7 @@ def register():
 	bpy.utils.register_class(LamellaPositionReset)
 	bpy.utils.register_class(MagicAnglesAnimator)
 	bpy.utils.register_class(ShowAngleComponents)
+	bpy.utils.register_class(ChangeToStageSim)
 
 	bpy.utils.register_class(MagicAnglesAnimatorPanel)
 	# bpy.utils.register_class(__name__)
@@ -584,6 +587,7 @@ def register():
 def unregister():
 	bpy.utils.unregister_class(MagicAnglesAnimatorPanel)
 
+	bpy.utils.unregister_class(ChangeToStageSim)
 	bpy.utils.unregister_class(ShowAngleComponents)
 	bpy.utils.unregister_class(MagicAnglesAnimator)
 	bpy.utils.unregister_class(LamellaPositionReset)

@@ -93,7 +93,7 @@ class StageSimPanel(bpy.types.Panel):
 	bl_idname = "OBJECT_PT_StageSim_panel"
 	bl_space_type = "VIEW_3D"
 	bl_region_type = "UI"
-	bl_category = "StageSim"
+	bl_category = "Liftout Animator"
 	bl_label = "Stage Simulator"
 
 	def draw(self, context):
@@ -103,15 +103,57 @@ class StageSimPanel(bpy.types.Panel):
 
 		layout.label(text=" Stage coordinates:")
 
-		row1 = layout.column(align=True)
-		row1.prop(pointer, "stage_x")
-		row1.prop(pointer, "stage_y")
-		row1.prop(pointer, "stage_z")
-		row1.prop(pointer, "stage_t")
-		row1.prop(pointer, "stage_r")
+		col1 = layout.column(align=True)
+		col1.prop(pointer, "stage_x")
+		col1.prop(pointer, "stage_y")
+		col1.prop(pointer, "stage_z")
+		col1.prop(pointer, "stage_t")
+		col1.prop(pointer, "stage_r")
 
 		layout.operator("object.zero_stage")
+
+		layout.label(text="Go to viewpoint:")
+		row1 = layout.row(align=True)
+		row1.operator("wm.ebeam_view")
+		row1.operator("wm.ibeam_view")
+		row1.operator("wm.laser_view")
+
+
 		layout.operator("wm.change_to_liftout")
+
+class EBeamView(bpy.types.Operator):
+	bl_idname = "wm.ebeam_view"
+	bl_label = "e-beam"
+
+	def execute(self, context):
+		bpy.context.scene.camera = bpy.data.scenes["Chamber Scene"].objects["e-beam view"]
+		current_context = bpy.context.region_data.view_perspective
+		if "C" not in current_context:
+			bpy.ops.view3d.view_camera()
+		return {'FINISHED'}
+
+
+class IBeamView(bpy.types.Operator):
+	bl_idname = "wm.ibeam_view"
+	bl_label = "i-beam"
+
+	def execute(self, context):
+		bpy.context.scene.camera = bpy.data.scenes["Chamber Scene"].objects["i-beam view"]
+		current_context = bpy.context.region_data.view_perspective
+		if "C" not in current_context:
+			bpy.ops.view3d.view_camera()
+		return {'FINISHED'}
+
+class LaserView(bpy.types.Operator):
+	bl_idname = "wm.laser_view"
+	bl_label = "Laser"
+
+	def execute(self, context):
+		bpy.context.scene.camera = bpy.data.scenes["Chamber Scene"].objects["laser view"]
+		current_context = bpy.context.region_data.view_perspective
+		if "C" not in current_context:
+			bpy.ops.view3d.view_camera()
+		return {'FINISHED'}
 
 class ChangeToLiftout(bpy.types.Operator):
 	bl_idname = "wm.change_to_liftout"
@@ -131,10 +173,16 @@ def register():
 	bpy.types.Scene.StageSim_pointer = bpy.props.PointerProperty(type=StageSimProps)
 	bpy.utils.register_class(ZeroStage)
 	bpy.utils.register_class(ChangeToLiftout)
+	bpy.utils.register_class(EBeamView)
+	bpy.utils.register_class(IBeamView)
+	bpy.utils.register_class(LaserView)
 	bpy.utils.register_class(StageSimPanel)
 
 def unregister():
 	bpy.utils.unregister_class(StageSimPanel)
+	bpy.utils.unregister_class(LaserView)
+	bpy.utils.unregister_class(IBeamView)
+	bpy.utils.unregister_class(EBeamView)
 	bpy.utils.unregister_class(ChangeToLiftout)
 	bpy.utils.unregister_class(ZeroStage)
 	del bpy.types.Scene.StageSim_pointer
