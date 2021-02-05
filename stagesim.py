@@ -118,8 +118,9 @@ class StageSimPanel(bpy.types.Panel):
 		row1.operator("wm.ibeam_view")
 		row1.operator("wm.laser_view")
 
-
-		layout.operator("wm.change_to_liftout")
+		row2 = layout.row()
+		row2.scale_y = 1.75
+		row2.operator("wm.change_to_liftout")
 
 class EBeamView(bpy.types.Operator):
 	bl_idname = "wm.ebeam_view"

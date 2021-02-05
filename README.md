@@ -1,31 +1,54 @@
 # liftout-animator
-Blender application template to animate in-situ liftout.
+Blender application template to animate in-situ liftout. Also includes Stage Simulator, which aims to help understanding sample orientation in triple-beam instruments.
 
 ## How to run
 
-Liftout-Animator (LA) builds on the Open-Source software Blender, which provides the toolbox to do 3D operations and full freedom to change anything. To install LA we first need to install blender:
+Liftout-Animator (LOA) builds on the Open-Source software Blender, which provides the toolbox to do 3D operations and full freedom to change anything. To install LA we first need to install blender:
 
-1. Download and install [Blender](https://www.blender.org/download/). This version was last tested on Blender version 2.91.2 (but should be stable for future minor revisions).
+1. Download and install [Blender](https://www.blender.org/download/). This version was last tested on Blender version 2.91.2 but should be stable for future minor revisions.
 
-2. Download .zip of LA code from this repository.
+2. Download .zip of LOA code from this repository.
 
 3. Install and run Blender, then click the blender icon in the top left toolbar and select Install Application Template
 
-4. Select the downloaded .zip and install. Restart Blender and on the splashscreen select __Liftout Animator__. Alternatively, in an open Blender window, select `File>New>Liftout Animator`
+4. Select the downloaded .zip and install, then restart Blender.
 
 ## Usage
 
 After install, when you now open Blender the Splash screen should have a `...` field where you can select Liftout Animator.
 
-![](/doc_screenshots/doc_splash1.jpg?raw=true "Splash screen")
+![Screenshot: Splash screen](/doc_screenshots/doc_splash1.jpg?raw=true "Splash screen")
 
 Alternatively, press `ctrl+n` for a new file and select Liftout Animator. This will load the default LOA file and control window.
 
+In its current incarnation, LOA has two main parts: Liftout Animator and Stage Simulator:
+ - In Liftout Animator, the result of different stage rotation, stage tilt and liftout needle rotation can be visualized for cross-section and/or plan-view lamellas.
+ - In Stage Simulator, the stage can be moved around interactively and seen either freely (use the middle mouse button to orbit the view) or from the view of either beam.
 
+The file can be saved, rendered and exported either as animations or still images, and all of Blenders power is available for those who seek it, but to keep the interface from being overwhelming the goal is to have as much complexity as possible hidden by default, with most relevant settings accesible in the Liftout Animator and Stage Simulator control panels.
 
-The 
+### Liftout Animator Window:
 
-## Developer Guide
+When opening a new LOA file, the default view should be a 3D view of a lamella and lift-out needle:
+
+![Screenshot: LOA](/doc_screenshots/doc_loa1.jpg?raw=true "LOA 1")
+
+To orbit around in 3D in Blender, hold down the middle mouse button or use the XYZ axes next to the panel in the upper right part of the screen. The actual controls for liftout have been collected in a single panel and are as follows:
+<img align="left" width="150" src="/doc_screenshots/doc_loa2.jpg">
+
+ - __Stage Rotation/Stage Tilt/Needle Rotation:__ These are the degrees of freedom for liftout: You can control the stage rotation and tilt axis when lifting out, as well as the rotation around the liftout needle axis.
+ - __Play/Pause:__ Starts and stops the animation.
+ - __Animate:__ Create and run the animation with above values.
+ - __Lamella type (Cross-section/Plan-view):__ Switch between two different lamella configurations
+ - __Liftout mode (Animation/Live preview):__ In Animation, set the desired values and press __Animate__ to see the steps. In Live preview, the animation jumps directly to the last frame and updates live as values change, letting you directly see the impact of each degree of freedom on the final lamella orientation.
+ - __Reset Lamella Rotation:__ Remove any pre-tilt from the lamella
+ - __Restore Liftout Defaults:__ Should change any animation values back to default.
+ - __Change to Stage Simulator:__ Change mode, scene and workspace to the Stage Simulator (below).
+ - __Animation options:__ Click to expand with multiple behind-the-scenes options to tweak the animation or switch granularly between Animation or Live Preview behaviors.
+
+### Stage Simulator Window:
+
+## How to contribute
 
 To change stuff and update the template, the whole repository can be cloned and worked with directly in the Blender Application Template folder, restarting Blender after changes to check every thing is working. However, the correct folder varies from system to system and will not be created before an application template is installed. Therefore, to make any changes, the easiest way to get up to speed is the following:
 
