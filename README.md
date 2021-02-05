@@ -62,6 +62,14 @@ This model is meant as an aid to navigating the stage in 3D, especially in newer
 - __Go to viewpoint (e/i/laser):__ Show the (orthographic) view for each beam. Current angles between beams are 52 degrees between electron and ion beams, and 60 degrees between electron and laser beams.
 - __Change to Liftout Animator:__ Go back to the Liftout Animator.
 
+## Uh oh, I messed something up:
+
+LOA has been built on top of Blender, and by default tries to hide some of the underlying complexity, both in interface and capability. While some things are hidden, they can easily be brought back, and the full power of Blender is still available to you. But with great power comes great responsibility<sup>[citation needed](https://www.explainxkcd.com/wiki/index.php/285:_Wikipedian_Protester)</sup>, and if unfamiliar with Blender it is easy to change the model or UI in ways you didn't intend, and you may not always be able to `ctrl+Z` to safety.
+
+Luckily, since LOA is created as an application template with a dedicated 'default' file, you can always restart Blender or open a new Liftout Animator file, which should reload and go back to where you were. You can freely save your file, and as long as you don't overwrite the bundled `startup.blend` file Blender will reload to a known state.
+
+If you had made changes to your saved file, but messed up the UI in the progress, you can restart Blender to get a new Liftout Animator file, then reload your own file, and in the loading menu click the cogwheel and disable `Load UI`, which should load in your revised file without doing changes to the UI itself.
+
 ## How to contribute
 
 To change stuff and update the template, the whole repository can be cloned and worked with directly in the Blender Application Template folder, restarting Blender after changes to check every thing is working. However, the correct folder varies from system to system and will not be created before an application template is installed. Therefore, to make any changes, the easiest way to get up to speed is the following:
