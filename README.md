@@ -34,7 +34,8 @@ When opening a new LOA file, the default view should be a 3D view of a lamella a
 ![Screenshot: LOA](/doc_screenshots/doc_loa1.jpg?raw=true "LOA 1")
 
 To orbit around in 3D in Blender, hold down the middle mouse button or use the XYZ axes next to the panel in the upper right part of the screen. The actual controls for liftout have been collected in a single panel and are as follows:
-<img align="left" width="150" src="/doc_screenshots/doc_loa2.jpg">
+
+<img align="left" width="250" src="/doc_screenshots/doc_loa2.jpg">
 
  - __Stage Rotation/Stage Tilt/Needle Rotation:__ These are the degrees of freedom for liftout: You can control the stage rotation and tilt axis when lifting out, as well as the rotation around the liftout needle axis.
  - __Play/Pause:__ Starts and stops the animation.
@@ -47,6 +48,19 @@ To orbit around in 3D in Blender, hold down the middle mouse button or use the X
  - __Animation options:__ Click to expand with multiple behind-the-scenes options to tweak the animation or switch granularly between Animation or Live Preview behaviors.
 
 ### Stage Simulator Window:
+
+- Clicking the __Change to Stage Simulator__ button in the Liftout animator will bring you to the Stage Simulator:
+
+![Screenshot: StageSim](/doc_screenshots/doc_stagesim1.jpg?raw=true "StageSim 1")
+
+This model is meant as an aid to navigating the stage in 3D, especially in newer triple-beam systems where hard-to-image-with beams like a laser need to be aligned. A pre-tilted stub with 45 and 60 degree surfaces can be moved using 5-axis controls that should closely mirror those of most FIB systems. The eucentric height is set to 0 in this space, and coincidence for all beams is at (0,0,0). Controls for the Stage Simulator panel are:
+
+<img align="left" width="250" src="/doc_screenshots/doc_stagesim2.jpg">
+
+- __Stage X/Y/Z/R/T:__ Common control axes for FIB stages.
+- __Zero Stage:__ Set all axes to 0
+- __Go to viewpoint (e/i/laser):__ Show the (orthographic) view for each beam. Current angles between beams are 52 degrees between electron and ion beams, and 60 degrees between electron and laser beams.
+- __Change to Liftout Animator:__ Go back to the Liftout Animator.
 
 ## How to contribute
 
