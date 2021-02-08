@@ -33,11 +33,11 @@ Liftout-Animator (LOA) builds on the Open-Source software Blender, which provide
 
 ## Usage
 
-After install, when you now open Blender the Splash screen should have a `...` field where you can select Liftout Animator.
+After install, when you now open Blender the Splash screen should now one the left, under New File, have a `...` field where you can select Liftout Animator. The Splash screen is shown whenever Blender is started, as shown below, or can be shown by clicking the Blender logo (to the left of File, Edit, etc.) and selecting `Splash Screen`.
 
 ![Screenshot: Splash screen](/doc_screenshots/doc_splash1.jpg?raw=true "Splash screen")
 
-Alternatively, press `ctrl+n` for a new file and select Liftout Animator. This will load the default LOA file and control window.
+Alternatively, press `ctrl+N` for a new file and select Liftout Animator. This will load the default LOA file and control window.
 
 In its current incarnation, LOA has two main parts: Liftout Animator and Stage Simulator:
  - In Liftout Animator, the result of different stage rotation, stage tilt and liftout needle rotation can be visualized for cross-section and/or plan-view lamellas.
