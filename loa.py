@@ -13,7 +13,7 @@ bl_info = {
 	"name": "Liftout Animator",
 	"description": "Animator for Magic Angles in FIB lift-out needles.",
 	"author": "Aleksander B. Mosberg",
-	"version": 5,
+	"version": 1.1,
 	"blender": (2, 91, 0),
 	"location": "",
 	"warning": "", # used for warning icon and text in addons panel

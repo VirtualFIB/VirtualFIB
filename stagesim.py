@@ -3,7 +3,7 @@ bl_info = {
 	"name": "Stage Simulator",
 	"description": "3D simulator of FIB stage",
 	"author": "Aleksander B. Mosberg",
-	"version": 1.0,
+	"version": 1.1,
 	"blender": (2, 91, 0),
 	"location": "",
 	"warning": "", # used for warning icon and text in addons panel
