@@ -3,7 +3,7 @@ bl_info = {
 	"name": "Stage Simulator",
 	"description": "3D simulator of FIB stage",
 	"author": "Aleksander B. Mosberg",
-	"version": 1.0,
+	"version": 0.1.0,
 	"blender": (2, 91, 0),
 	"location": "",
 	"warning": "", # used for warning icon and text in addons panel
@@ -93,7 +93,7 @@ class StageSimPanel(bpy.types.Panel):
 	bl_idname = "OBJECT_PT_StageSim_panel"
 	bl_space_type = "VIEW_3D"
 	bl_region_type = "UI"
-	bl_category = "Liftout Animator"
+	bl_category = "Stage Simulator"
 	bl_label = "Stage Simulator"
 
 	def draw(self, context):
