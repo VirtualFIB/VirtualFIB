@@ -121,6 +121,7 @@ class StageSimPanel(bpy.types.Panel):
 		row2 = layout.row()
 		row2.scale_y = 1.75
 		row2.operator("wm.change_to_liftout")
+		row2.operator("wm.change_to_postsim")
 
 class EBeamView(bpy.types.Operator):
 	bl_idname = "wm.ebeam_view"

@@ -1,6 +1,6 @@
 import bpy
 from bpy.app.handlers import persistent
-from . import loa, stagesim
+from . import loa, stagesim, postwelder
 
 @persistent
 def load_handler_for_preferences(_):
@@ -45,11 +45,13 @@ def register():
     bpy.app.handlers.load_factory_startup_post.append(load_handler_for_startup)
     loa.register()
     stagesim.register()
+    postwelder.register()
 
 
 def unregister():
     print("Unregistering to Change Defaults")
     bpy.app.handlers.load_factory_preferences_post.remove(load_handler_for_preferences)
     bpy.app.handlers.load_factory_startup_post.remove(load_handler_for_startup)
-    loa.unregister()
+    postwelder.unregister()
     stagesim.unregister()
+    loa.unregister()

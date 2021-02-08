@@ -504,8 +504,10 @@ class XSecLamella(bpy.types.Operator):
 
 	def execute(self, context):
 
-		 bpy.data.scenes["Liftout Scene"].view_layers["View Layer"].active_layer_collection.children["Cross-section Lamella"].exclude = False
-		 bpy.data.scenes["Liftout Scene"].view_layers["View Layer"].active_layer_collection.children["Plan-view Lamella"].exclude = True
+		 bpy.data.scenes["Liftout Scene"].view_layers["View Layer"].layer_collection.children["Cross-section Lamella"].exclude = False
+		 bpy.data.scenes["Liftout Scene"].view_layers["View Layer"].layer_collection.children["Plan-view Lamella"].exclude = True
+		 bpy.data.scenes["Postwelder Scene"].view_layers["View Layer"].layer_collection.children["Cross-section Lamella"].exclude = False
+		 bpy.data.scenes["Postwelder Scene"].view_layers["View Layer"].layer_collection.children["Plan-view Lamella"].exclude = True
 
 		 return {'FINISHED'}
 
@@ -516,8 +518,10 @@ class PlanViewLamella(bpy.types.Operator):
 
 	def execute(self, context):
 
-		 bpy.data.scenes["Liftout Scene"].view_layers["View Layer"].active_layer_collection.children["Plan-view Lamella"].exclude = False
-		 bpy.data.scenes["Liftout Scene"].view_layers["View Layer"].active_layer_collection.children["Cross-section Lamella"].exclude = True
+		 bpy.data.scenes["Liftout Scene"].view_layers["View Layer"].layer_collection.children["Plan-view Lamella"].exclude = False
+		 bpy.data.scenes["Liftout Scene"].view_layers["View Layer"].layer_collection.children["Cross-section Lamella"].exclude = True
+		 bpy.data.scenes["Postwelder Scene"].view_layers["View Layer"].layer_collection.children["Plan-view Lamella"].exclude = False
+		 bpy.data.scenes["Postwelder Scene"].view_layers["View Layer"].layer_collection.children["Cross-section Lamella"].exclude = True
 
 		 return {'FINISHED'}
 
@@ -594,6 +598,7 @@ class MagicAnglesAnimatorPanel(bpy.types.Panel):
 		# layout.operator("ANIM_OT_keyframe_clear_v3d")
 		row3 = layout.row()
 		row3.scale_y = 1.75
+		row3.operator("wm.change_to_postsim")
 		row3.operator("wm.change_to_stagesim")
 
 		box = layout.box()
