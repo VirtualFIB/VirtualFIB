@@ -66,7 +66,7 @@ This model is meant as an aid to navigating the stage in 3D, especially in newer
 
 <img align="left" width="250" src="/doc_screenshots/doc_stagesim2.jpg">
 
-- __Stage X/Y/Z/R/T:__ Common control axes for FIB stages.
+- __Stage X/Y/Z/R/T:__ Common control axes for FIB stages. To move the stage click and drag horizontally to change values, or use the keyboard to enter specific values.
 - __Zero Stage:__ Set all axes to 0
 - __Go to viewpoint (e/i/laser):__ Show the (orthographic) view for each beam. Current angles between beams are 52 degrees between electron and ion beams, and 60 degrees between electron and laser beams.
 - __Change to Liftout Animator:__ Go back to the Liftout Animator.
