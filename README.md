@@ -2,6 +2,7 @@
 Blender application template to animate in-situ liftout. Also includes Stage Simulator, which aims to help understanding sample orientation in triple-beam instruments.
 
 ## Table of contents
+* [Requirements](#requirements)
 * [How to install](#how-to-install)
 * [Usage](#usage)
 * [Liftout Animator Window](#liftout-animator-window)
@@ -9,6 +10,14 @@ Blender application template to animate in-situ liftout. Also includes Stage Sim
 * [Uh oh, I messed something up](#uh-oh-i-messed-something-up)
 * [How to contribute](#how-to-contribute)
 * [Useful links](#useful-links)
+
+## Requirements
+
+This version was built for Blender version 2.91.2, which is compatible with most operating systems ([Blender requirements](https://www.blender.org/download/requirements/)), but has limited compatability with older macOS versions (requires 10.13 or newer). 
+
+It has also been tested with the 2.83 [Long Term Support branch](https://www.blender.org/download/lts/) (2.83.12), which supports macOS 10.12 and above.
+
+This application template is generally not compatible with Blender 2.79 or below.
 
 ## How to install
 
