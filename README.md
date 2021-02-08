@@ -33,7 +33,7 @@ Liftout-Animator (LOA) builds on the Open-Source software Blender, which provide
 
 ## Usage
 
-After install, when you now open Blender the [Splash Screen](https://docs.blender.org/manual/en/dev/interface/window_system/splash.html) should now one the left, under New File, have a `...` field where you can select Liftout Animator as shown below.
+After install, when you now open Blender the [Splash Screen](https://docs.blender.org/manual/en/dev/interface/window_system/splash.html) should now on the left, under New File, have a `...` field where you can select Liftout Animator as shown below.
 
 ![Screenshot: Splash screen](/doc_screenshots/doc_splash1.jpg?raw=true "Splash screen")
 
