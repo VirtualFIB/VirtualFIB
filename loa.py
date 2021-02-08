@@ -11,10 +11,10 @@ into where you want your breakpoint to be.
 
 bl_info = {
 	"name": "Liftout Animator",
-	"description": "Animator for FIB lift-out.",
+	"description": "Animator for Magic Angles in FIB lift-out needles.",
 	"author": "Aleksander B. Mosberg",
-	"version": 0.1.0,
-	"blender": (2, 91, 2),
+	"version": 5,
+	"blender": (2, 91, 0),
 	"location": "",
 	"warning": "", # used for warning icon and text in addons panel
     "wiki_url": "",
