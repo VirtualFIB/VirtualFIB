@@ -93,7 +93,7 @@ class StageSimPanel(bpy.types.Panel):
 	bl_idname = "OBJECT_PT_StageSim_panel"
 	bl_space_type = "VIEW_3D"
 	bl_region_type = "UI"
-	bl_category = "Liftout Animator"
+	bl_category = "Stage Simulator"
 	bl_label = "Stage Simulator"
 
 	def draw(self, context):
