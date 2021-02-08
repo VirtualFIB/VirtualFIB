@@ -50,12 +50,12 @@ class MAASettings(bpy.types.PropertyGroup):
     first_rot : bpy.props.FloatProperty(
         name = "Stage Rotation",
         description = "Stage rotation, -360d -> 360d",
-        default = 45.0,
+        default = 90.0,
         min = -360.0,
         max = 360.0,
         update = angle_changed
         )
-    first_rot_def = 45
+    first_rot_def = 90
 
     second_rot : bpy.props.FloatProperty(
         name = "Stage Tilt",
@@ -70,12 +70,12 @@ class MAASettings(bpy.types.PropertyGroup):
     third_rot : bpy.props.FloatProperty(
         name = "Needle Rotation",
         description = "Lift-out needle rotation, -360d -> 360d",
-        default = 109.5,
+        default = 180.0,
         min = -360,
         max = 360.0,
         update = angle_changed
         )
-    third_rot_def = 109.5
+    third_rot_def = 180
 
     initial_eulerX : bpy.props.FloatProperty(
     	name = "Pretilt X",
@@ -196,7 +196,7 @@ class MAASettings(bpy.types.PropertyGroup):
 
 class RestoreDefaults(bpy.types.Operator):
 	bl_idname = "wm.restore_defaults"
-	bl_label = "Restore Default MAA Values"
+	bl_label = "Restore Liftout Defaults"
 
 	def execute(self, context):
 
@@ -242,9 +242,9 @@ class MagicAnglesAnimator(bpy.types.Operator):
 		scn = bpy.context.scene
 		scn.frame_start = 1
 
-		if bpy.context.scene.view_layers['RenderLayer'].layer_collection.children['Cross-section lamella'].exclude == True:
+		if bpy.context.scene.view_layers["View Layer"].layer_collection.children['Cross-section Lamella'].exclude == True:
 			planview = True
-			bpy.context.scene.view_layers['RenderLayer'].layer_collection.children['Cross-section lamella'].exclude = False
+			bpy.context.scene.view_layers["View Layer"].layer_collection.children['Cross-section Lamella'].exclude = False
 		else: 
 			planview = False
 
@@ -420,7 +420,7 @@ class MagicAnglesAnimator(bpy.types.Operator):
 			item.select_set(True)
 
 		if planview is True:
-			bpy.context.scene.view_layers['RenderLayer'].layer_collection.children['Cross-section lamella'].exclude = True
+			bpy.context.scene.view_layers['View Layer'].layer_collection.children['Cross-section Lamella'].exclude = True
 
 		return {'FINISHED'}
 
@@ -486,12 +486,77 @@ class ShowAngleComponents(bpy.types.Operator):
 
 		return {'FINISHED'}
 
+
+class ChangeToStageSim(bpy.types.Operator):
+	bl_idname = "wm.change_to_stagesim"
+	bl_label = "Change to Stage Simulator"
+
+	def execute(self, context):
+		
+		bpy.context.window.scene = bpy.data.scenes["StageSim Scene"]
+		bpy.context.window.workspace = bpy.data.workspaces['Stage Simulator']
+
+		return {'FINISHED'}
+
+class XSecLamella(bpy.types.Operator):
+	bl_idname = "object.xsec_lamella"
+	bl_label = "Cross-section"
+
+	def execute(self, context):
+
+		 bpy.data.scenes["Liftout Scene"].view_layers["View Layer"].active_layer_collection.children["Cross-section Lamella"].exclude = False
+		 bpy.data.scenes["Liftout Scene"].view_layers["View Layer"].active_layer_collection.children["Plan-view Lamella"].exclude = True
+
+		 return {'FINISHED'}
+
+
+class PlanViewLamella(bpy.types.Operator):
+	bl_idname = "object.planview_lamella"
+	bl_label = "Plan-view"
+
+	def execute(self, context):
+
+		 bpy.data.scenes["Liftout Scene"].view_layers["View Layer"].active_layer_collection.children["Plan-view Lamella"].exclude = False
+		 bpy.data.scenes["Liftout Scene"].view_layers["View Layer"].active_layer_collection.children["Cross-section Lamella"].exclude = True
+
+		 return {'FINISHED'}
+
+class AnimMode(bpy.types.Operator):
+	bl_idname = "wm.anim_mode"
+	bl_label = "Animation"
+
+	def execute(self, context):
+
+		bpy.context.scene.my_tool.play_on_animate = True
+		bpy.context.scene.my_tool.live_update = False
+		bpy.context.scene.my_tool.rotation_mode = 'Detailed'
+		bpy.context.scene.my_tool.finish_on_frame = "First"
+
+		return {'FINISHED'}
+
+
+class SimMode(bpy.types.Operator):
+	bl_idname = "wm.sim_mode"
+	bl_label = "Live preview"
+
+	def execute(self, context):
+
+		bpy.context.scene.my_tool.play_on_animate = False
+		bpy.context.scene.my_tool.live_update = True
+		bpy.context.scene.my_tool.rotation_mode = 'Smooth'
+		bpy.context.scene.my_tool.finish_on_frame = "Last"
+		bpy.ops.wm.magic_angles_animator()
+		bpy.context.scene.frame_current = bpy.context.scene.frame_end
+
+		return {'FINISHED'}
+
+
 class MagicAnglesAnimatorPanel(bpy.types.Panel):
 	bl_idname = "OBJECT_PT_MAA_panel"
 	bl_space_type = "VIEW_3D"
 	bl_region_type = "UI"
-	bl_category = "Item"
-	bl_label = "Magic Angles Animator"
+	bl_category = "Liftout Animator"
+	bl_label = "Liftout animator"
 	# bl_context = "scene"
 
 	def draw(self, context):
@@ -512,13 +577,24 @@ class MagicAnglesAnimatorPanel(bpy.types.Panel):
 		else:
 			row.operator("screen.animation_play", icon="PAUSE", text="Pause")
 		row.operator("wm.magic_angles_animator", icon="CAMERA_DATA")
-		row2 = layout.row()
+		layout.label(text="Lamella type:")
+		row2 = layout.row(align=True)
 		row2.scale_y = 1.2
-		row2.operator("wm.show_angle_components")
+		row2.operator("object.xsec_lamella")
+		row2.operator("object.planview_lamella")
+		# row2.operator("wm.show_angle_components")
 		
+		layout.label(text="Liftout mode:")
+		row3 = layout.row(align=True)
+		row3.operator("wm.anim_mode")
+		row3.operator("wm.sim_mode")
+
 		layout.operator('wm.lamella_position_reset')
 		layout.operator("wm.restore_defaults")
-		layout.operator("ANIM_OT_keyframe_clear_v3d")
+		# layout.operator("ANIM_OT_keyframe_clear_v3d")
+		row3 = layout.row()
+		row3.scale_y = 1.75
+		row3.operator("wm.change_to_stagesim")
 
 		box = layout.box()
 		row = box.row()
@@ -565,6 +641,11 @@ def register():
 	bpy.utils.register_class(LamellaPositionReset)
 	bpy.utils.register_class(MagicAnglesAnimator)
 	bpy.utils.register_class(ShowAngleComponents)
+	bpy.utils.register_class(ChangeToStageSim)
+	bpy.utils.register_class(XSecLamella)
+	bpy.utils.register_class(PlanViewLamella)
+	bpy.utils.register_class(AnimMode)
+	bpy.utils.register_class(SimMode)
 
 	bpy.utils.register_class(MagicAnglesAnimatorPanel)
 	# bpy.utils.register_class(__name__)
@@ -572,6 +653,11 @@ def register():
 def unregister():
 	bpy.utils.unregister_class(MagicAnglesAnimatorPanel)
 
+	bpy.utils.unregister_class(SimMode)
+	bpy.utils.unregister_class(AnimMode)
+	bpy.utils.unregister_class(PlanViewLamella)
+	bpy.utils.unregister_class(XSecLamella)
+	bpy.utils.unregister_class(ChangeToStageSim)
 	bpy.utils.unregister_class(ShowAngleComponents)
 	bpy.utils.unregister_class(MagicAnglesAnimator)
 	bpy.utils.unregister_class(LamellaPositionReset)
