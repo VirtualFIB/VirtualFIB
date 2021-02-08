@@ -1,7 +1,16 @@
 # liftout-animator
 Blender application template to animate in-situ liftout. Also includes Stage Simulator, which aims to help understanding sample orientation in triple-beam instruments.
 
-## How to run
+## Table of contents
+* [How to install](#how-to-install)
+* [Usage](#usage)
+* [Liftout Animator Window](#liftout-animator-window)
+* [Stage Simulator Window](#stage-simulator-window)
+* [Uh oh, I messed something up](#uh-oh-i-messed-something-up)
+* [How to contribute](#how-to-contribute)
+* [Useful links](#useful-links)
+
+## How to install
 
 Liftout-Animator (LOA) builds on the Open-Source software Blender, which provides the toolbox to do 3D operations and full freedom to change anything. To install LA we first need to install blender:
 
@@ -66,7 +75,7 @@ This model is meant as an aid to navigating the stage in 3D, especially in newer
 
 LOA has been built on top of Blender, and by default tries to hide some of the underlying complexity, both in interface and capability. While some things are hidden, they can easily be brought back, and the full power of Blender is still available to you. But with great power comes great responsibility<sup>[citation needed](https://www.explainxkcd.com/wiki/index.php/285:_Wikipedian_Protester)</sup>, and if unfamiliar with Blender it is easy to change the model or UI in ways you didn't intend, and you may not always be able to `ctrl+Z` to safety.
 
-Luckily, since LOA is created as an application template with a dedicated 'default' file, you can always restart Blender or open a new Liftout Animator file, which should reload and go back to where you were. You can freely save your file, and as long as you don't overwrite the bundled `startup.blend` file Blender will reload to a known state.
+Luckily, since LOA is created as an application template with a dedicated 'default' file, you can always restart Blender or open a new Liftout Animator file, which should reload and go back to where you were. You can freely save your file, and as long as you don't overwrite the bundled *startup.blend* file Blender will reload to a known state.
 
 If you had made changes to your saved file, but messed up the UI in the progress, you can restart Blender to get a new Liftout Animator file, then reload your own file, and in the loading menu click the cogwheel and disable `Load UI`, which should load in your revised file without doing changes to the UI itself.
 
@@ -76,9 +85,9 @@ To change stuff and update the template, the whole repository can be cloned and 
 
 1. Install and check LA is working as explained above (Blender automatically creates the right folders in the right places).
 
-2. Navigate to the liftout-animator application template folder. The precise location varies with your system and is detailed [here](https://docs.blender.org/manual/en/latest/advanced/app_templates.html) in the Blender documentation. On Windows, it should be **Username**/AppData/Roaming/Blender Foundation/Blender/**Blender version**/scripts/startup/bl_app_templates_user.
+2. Navigate to the liftout-animator application template folder. The precise location varies with your system and is detailed [here](https://docs.blender.org/manual/en/latest/advanced/app_templates.html) in the Blender documentation. On Windows, it should be *__User name__/AppData/Roaming/Blender Foundation/Blender/__Blender version__/scripts/startup/bl_app_templates_user*.
 
-3. Close Blender if you have it open, and delete the liftout-animator folder. Now you can clone the repository to bl_app_templates_user and the next time you open blender it should automatically detect the template.
+3. Close Blender if you have it open, and delete the liftout-animator folder. Now you can clone the repository to *bl_app_templates_user* and the next time you open blender it should automatically detect the template.
 
 ### Useful links
 
