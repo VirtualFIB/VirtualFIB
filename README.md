@@ -1,5 +1,5 @@
 # liftout-animator
-Blender application template to animate in-situ liftout. Also includes Stage Simulator, which aims to help understanding sample orientation in triple-beam instruments.
+Blender application template to animate *in situ* liftout. Also includes Stage Simulator, which aims to help understanding sample orientation in triple-beam instruments.
 
 ## Table of contents
 * [Requirements](#requirements)
