@@ -1,3 +1,19 @@
+    # <FIBsim - the friendly neighborhood FIB 3D simulator>
+    # Copyright (C) <2021>  <Aleksander B. Mosberg>
+
+    # This program is free software: you can redistribute it and/or modify
+    # it under the terms of the GNU General Public License as published by
+    # the Free Software Foundation, either version 3 of the License, or
+    # (at your option) any later version.
+
+    # This program is distributed in the hope that it will be useful,
+    # but WITHOUT ANY WARRANTY; without even the implied warranty of
+    # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    # GNU General Public License for more details.
+
+    # You should have received a copy of the GNU General Public License
+    # along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
 
 bl_info = {
 	"name": "Stage Simulator",
@@ -121,6 +137,7 @@ class StageSimPanel(bpy.types.Panel):
 		row2 = layout.row()
 		row2.scale_y = 1.75
 		row2.operator("wm.change_to_liftout")
+		row2.operator("wm.change_to_postsim")
 
 class EBeamView(bpy.types.Operator):
 	bl_idname = "wm.ebeam_view"
