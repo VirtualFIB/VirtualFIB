@@ -1,22 +1,35 @@
-    # <FIBsim - the friendly neighborhood FIB 3D simulator>
-    # Copyright (C) <2021>  <Aleksander B. Mosberg>
+# <FIBsim - the friendly neighborhood FIB 3D simulator>
+# Copyright (C) <2021>  <Aleksander B. Mosberg>
 
-    # This program is free software: you can redistribute it and/or modify
-    # it under the terms of the GNU General Public License as published by
-    # the Free Software Foundation, either version 3 of the License, or
-    # (at your option) any later version.
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
 
-    # This program is distributed in the hope that it will be useful,
-    # but WITHOUT ANY WARRANTY; without even the implied warranty of
-    # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    # GNU General Public License for more details.
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
 
-    # You should have received a copy of the GNU General Public License
-    # along with this program.  If not, see <https://www.gnu.org/licenses/>.
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-import bpy
-from bpy.app.handlers import persistent
-from . import loa, stagesim, postwelder
+bl_info = {
+    "name": "FIBsim",
+    "description": "3D simulator for FIB operations",
+    "author": "Aleksander B. Mosberg",
+    "version": 0.2,
+    "blender": (2, 91, 0),
+    "location": "",
+    "warning": "",  # used for warning icon and text in addons panel
+    "wiki_url": "",
+    "tracker_url": "",
+    "category": "Object"
+    }
+
+# import bpy
+# from bpy.app.handlers import persistent
+from . import beamview, loa, stagesim, postwelder
 
 # @persistent
 # def load_handler_for_preferences(_):
@@ -54,7 +67,9 @@ from . import loa, stagesim, postwelder
 #                     space.shading.type = 'MATERIAL'
 #                     space.shading.use_scene_lights = True
 
+
 modules = (
+    beamview,
     loa,
     stagesim,
     postwelder
@@ -83,6 +98,7 @@ def unregister():
     # postwelder.unregister()
     # stagesim.unregister()
     # loa.unregister()
+
 
 if __name__ == "__main__":
     register()
