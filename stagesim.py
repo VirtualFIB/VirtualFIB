@@ -14,21 +14,12 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-
-bl_info = {
-    "name": "Stage Simulator",
-    "description": "3D simulator of FIB stage",
-    "author": "Aleksander B. Mosberg",
-    "version": 1.1,
-    "blender": (2, 91, 0),
-    "location": "",
-    "warning": "",  # used for warning icon and text in addons panel
-    "wiki_url": "",
-    "tracker_url": "",
-    "category": "Object"
-    }
-
 import bpy
+from bpy.types import (Operator,
+                       PropertyGroup,
+                       Panel
+                       )
+from bpy.props import FloatProperty
 from math import radians as rad
 
 
@@ -42,8 +33,12 @@ def stage_moved(self, context):
     bones["R Bone"].rotation_euler[1] = rad(props.stage_r)
     bones["XYZ Bone"].location = [-props.stage_x, props.stage_z, props.stage_y]
 
+# -------------------------------------------------------------------
+#   Operators
+# -------------------------------------------------------------------
 
-class ZeroStage(bpy.types.Operator):
+
+class ZeroStage(Operator):
     bl_idname = "object.zero_stage"
     bl_label = "Zero Stage"
 
@@ -59,9 +54,9 @@ class ZeroStage(bpy.types.Operator):
         return {'FINISHED'}
 
 
-class StageSimProps(bpy.types.PropertyGroup):
+class StageSimProps(PropertyGroup):
 
-    stage_x: bpy.props.FloatProperty(
+    stage_x: FloatProperty(
         name="Stage X",
         description="Stage X coordinate, -155 mm -> 155 mm",
         min=-155,
@@ -70,7 +65,7 @@ class StageSimProps(bpy.types.PropertyGroup):
         )
     stage_x_def = 0
 
-    stage_y: bpy.props.FloatProperty(
+    stage_y: FloatProperty(
         name="Stage Y",
         description="Stage Y coordinate, -155 mm -> 155 mm",
         min=-155,
@@ -79,7 +74,7 @@ class StageSimProps(bpy.types.PropertyGroup):
         )
     stage_y_def = 0
 
-    stage_z: bpy.props.FloatProperty(
+    stage_z: FloatProperty(
         name="Stage Z",
         description="Stage Z coordinate, defined as 0 at Eucentric, -20 mm -> 20 mm",
         min=-20,
@@ -88,7 +83,7 @@ class StageSimProps(bpy.types.PropertyGroup):
         )
     stage_z_def = 0
 
-    stage_r: bpy.props.FloatProperty(
+    stage_r: FloatProperty(
         name="Stage R",
         description="Stage R coordinate in deg, -360d -> 360d",
         min=-360,
@@ -97,7 +92,7 @@ class StageSimProps(bpy.types.PropertyGroup):
         )
     stage_r_def = 0
 
-    stage_t: bpy.props.FloatProperty(
+    stage_t: FloatProperty(
         name="Stage T",
         description="Stage T coordinate in deg, -12d -> 60d",
         min=-12,
@@ -107,7 +102,7 @@ class StageSimProps(bpy.types.PropertyGroup):
     stage_t_def = 0
 
 
-class StageSimPanel(bpy.types.Panel):
+class StageSimPanel(Panel):
     bl_idname = "OBJECT_PT_StageSim_panel"
     bl_space_type = "VIEW_3D"
     bl_region_type = "UI"
@@ -130,73 +125,14 @@ class StageSimPanel(bpy.types.Panel):
 
         layout.operator("object.zero_stage")
 
-        layout.label(text="Go to viewpoint:")
-        row1 = layout.row(align=True)
-        row1.operator("wm.ebeam_view")
-        row1.operator("wm.ibeam_view")
-        row1.operator("wm.laser_view")
-
-        row2 = layout.row()
-        row2.scale_y = 1.75
-        row2.operator("wm.change_to_liftout")
-        row2.operator("wm.change_to_postsim")
-
-
-class EBeamView(bpy.types.Operator):
-    bl_idname = "wm.ebeam_view"
-    bl_label = "e-beam"
-
-    def execute(self, context):
-        bpy.context.scene.camera = bpy.data.scenes["Chamber Scene"].objects["e-beam view"]
-        current_context = bpy.context.region_data.view_perspective
-        if "C" not in current_context:
-            bpy.ops.view3d.view_camera()
-        return {'FINISHED'}
-
-
-class IBeamView(bpy.types.Operator):
-    bl_idname = "wm.ibeam_view"
-    bl_label = "i-beam"
-
-    def execute(self, context):
-        bpy.context.scene.camera = bpy.data.scenes["Chamber Scene"].objects["i-beam view"]
-        current_context = bpy.context.region_data.view_perspective
-        if "C" not in current_context:
-            bpy.ops.view3d.view_camera()
-        return {'FINISHED'}
-
-
-class LaserView(bpy.types.Operator):
-    bl_idname = "wm.laser_view"
-    bl_label = "Laser"
-
-    def execute(self, context):
-        bpy.context.scene.camera = bpy.data.scenes["Chamber Scene"].objects["laser view"]
-        current_context = bpy.context.region_data.view_perspective
-        if "C" not in current_context:
-            bpy.ops.view3d.view_camera()
-        return {'FINISHED'}
-
-
-class ChangeToLiftout(bpy.types.Operator):
-    bl_idname = "wm.change_to_liftout"
-    bl_label = "Change to Liftout Animator"
-
-    def execute(self, context):
-
-        bpy.context.window.scene = bpy.data.scenes["Liftout Scene"]
-        bpy.context.window.workspace = bpy.data.workspaces['Liftout Animator']
-
-        return {'FINISHED'}
+# -------------------------------------------------------------------
+#   Register & Unregister
+# -------------------------------------------------------------------
 
 
 __classes__ = (StageSimProps,
                ZeroStage,
-               ChangeToLiftout,
-               EBeamView,
-               IBeamView,
-               LaserView,
-               StageSimPanel,
+               StageSimPanel
                )
 
 

@@ -19,96 +19,95 @@ from bpy.types import (Operator,
                        Panel
                        )
 
+yscale = 1.25
+
 # -------------------------------------------------------------------
 #   Operators
 # -------------------------------------------------------------------
 
 
-class EBeamView(Operator):
-    bl_idname = "view3d.ebeam_view"
-    bl_label = "e-beam"
+class ChangeToLiftout(Operator):
+    bl_idname = "wm.change_to_liftout"
+    bl_label = "Liftout Animator"
 
     def execute(self, context):
-        bpy.context.scene.camera = bpy.data.scenes["Chamber Scene"].objects["e-beam view"]
-        current_context = bpy.context.region_data.view_perspective
-        if "C" not in current_context:
-            bpy.ops.view3d.view_camera()
+
+        bpy.context.window.scene = bpy.data.scenes["Liftout Scene"]
+        bpy.context.window.workspace = bpy.data.workspaces['Liftout Animator']
+
         return {'FINISHED'}
 
 
-class IBeamView(Operator):
-    bl_idname = "view3d.ibeam_view"
-    bl_label = "i-beam"
+class ChangeToPostSim(Operator):
+    bl_idname = "wm.change_to_postsim"
+    bl_label = "Post Welder"
 
     def execute(self, context):
-        bpy.context.scene.camera = bpy.data.scenes["Chamber Scene"].objects["i-beam view"]
-        current_context = bpy.context.region_data.view_perspective
-        if "C" not in current_context:
-            bpy.ops.view3d.view_camera()
+
+        bpy.context.window.scene = bpy.data.scenes["Postwelder Scene"]
+        bpy.context.window.workspace = bpy.data.workspaces['Post Welder']
+
         return {'FINISHED'}
 
 
-class LaserView(Operator):
-    bl_idname = "view3d.laser_view"
-    bl_label = "Laser"
+class ChangeToStageSim(Operator):
+    bl_idname = "wm.change_to_stagesim"
+    bl_label = "Stage Simulator"
 
     def execute(self, context):
-        bpy.context.scene.camera = bpy.data.scenes["Chamber Scene"].objects["laser view"]
-        current_context = bpy.context.region_data.view_perspective
-        if "C" not in current_context:
-            bpy.ops.view3d.view_camera()
+
+        bpy.context.window.scene = bpy.data.scenes["StageSim Scene"]
+        bpy.context.window.workspace = bpy.data.workspaces['Stage Simulator']
+
         return {'FINISHED'}
 
 
-class BeamViewLiftoutPanel(Panel):
-    bl_idname = "FIBSIM_PT_beamview_liftout_panel"
+class LOAModuleChangerPanel(Panel):
+    bl_idname = "FIBSIM_PT_loa_modulechanger_panel"
     bl_space_type = "VIEW_3D"
     bl_region_type = "UI"
     bl_category = 'Liftout Animator'
-    bl_label = "Beam View"
+    bl_label = "Change to Module"
 
     def draw(self, context):
         layout = self.layout
 
         row1 = layout.row(align=True)
-        row1.scale_y = 1.2
-        row1.operator("view3d.ebeam_view")
-        row1.operator("view3d.ibeam_view")
-        row1.operator("view3d.laser_view")
+        row1.scale_y = yscale
+        row1.operator("wm.change_to_postsim")
+        row1.operator("wm.change_to_stagesim")
 
 
-class BeamViewPostSimPanel(Panel):
-    bl_idname = "FIBSIM_PT_beamview_postsim_panel"
+class PostSimModuleChangerPanel(Panel):
+    bl_idname = "FIBSIM_PT_postsim_modulechanger_panel"
     bl_space_type = "VIEW_3D"
     bl_region_type = "UI"
     bl_category = 'Post Simulator'
-    bl_label = "Beam View"
+    bl_label = "Change to Module"
 
     def draw(self, context):
         layout = self.layout
 
         row1 = layout.row(align=True)
-        row1.scale_y = 1.2
-        row1.operator("view3d.ebeam_view")
-        row1.operator("view3d.ibeam_view")
-        row1.operator("view3d.laser_view")
+        row1.scale_y = yscale
+        row1.operator("wm.change_to_liftout")
+        row1.operator("wm.change_to_stagesim")
 
 
-class BeamViewStageSimPanel(Panel):
-    bl_idname = "FIBSIM_PT_beamview_stagesim_panel"
+class StageSimModuleChangerPanel(Panel):
+    bl_idname = "FIBSIM_PT_stagesim_modulechanger_panel"
     bl_space_type = "VIEW_3D"
     bl_region_type = "UI"
     bl_category = 'Stage Simulator'
-    bl_label = "Beam View"
+    bl_label = "Change to Module"
 
     def draw(self, context):
         layout = self.layout
 
         row1 = layout.row(align=True)
-        row1.scale_y = 1.2
-        row1.operator("view3d.ebeam_view")
-        row1.operator("view3d.ibeam_view")
-        row1.operator("view3d.laser_view")
+        row1.scale_y = yscale
+        row1.operator("wm.change_to_liftout")
+        row1.operator("wm.change_to_postsim")
 
 # -------------------------------------------------------------------
 #   Register & Unregister
@@ -116,12 +115,12 @@ class BeamViewStageSimPanel(Panel):
 
 
 __classes__ = (
-    EBeamView,
-    IBeamView,
-    LaserView,
-    BeamViewLiftoutPanel,
-    BeamViewStageSimPanel,
-    BeamViewPostSimPanel
+    ChangeToLiftout,
+    ChangeToPostSim,
+    ChangeToStageSim,
+    LOAModuleChangerPanel,
+    PostSimModuleChangerPanel,
+    StageSimModuleChangerPanel
     )
 
 register, unregister = bpy.utils.register_classes_factory(__classes__)

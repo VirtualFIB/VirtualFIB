@@ -18,18 +18,24 @@ bl_info = {
     "name": "FIBsim",
     "description": "3D simulator for FIB operations",
     "author": "Aleksander B. Mosberg",
-    "version": 0.2,
+    "version": (0, 3),
     "blender": (2, 91, 0),
-    "location": "",
+    "location": "View3D > FIBsim",
     "warning": "",  # used for warning icon and text in addons panel
     "wiki_url": "",
     "tracker_url": "",
+    "support": "TESTING",
     "category": "Object"
     }
 
 # import bpy
 # from bpy.app.handlers import persistent
-from . import beamview, loa, stagesim, postwelder
+from . import (beamview,
+               loa,
+               stagesim,
+               postwelder,
+               moduleselector
+               )
 
 # @persistent
 # def load_handler_for_preferences(_):
@@ -67,9 +73,14 @@ from . import beamview, loa, stagesim, postwelder
 #                     space.shading.type = 'MATERIAL'
 #                     space.shading.use_scene_lights = True
 
+# -------------------------------------------------------------------
+#   Register & Unregister
+# -------------------------------------------------------------------
+
 
 modules = (
     beamview,
+    moduleselector,
     loa,
     stagesim,
     postwelder

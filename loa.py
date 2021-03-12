@@ -14,30 +14,6 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-"""
-In order to interact with the code at any point, just paste this line:
-
-__import__('code').interact(local=dict(globals(), **locals()))
-
-__import__('code').interact(local={k: v for ns in (globals(), locals()) for k, v in ns.items()})
-
-into where you want your breakpoint to be.
-(From https://docs.blender.org/api/blender_python_api_2_76_1/info_tips_and_tricks.html)
-"""
-
-bl_info = {
-    "name": "Liftout Animator",
-    "description": "Animator for Magic Angles in FIB lift-out needles.",
-    "author": "Aleksander B. Mosberg",
-    "version": 1.1,
-    "blender": (2, 91, 0),
-    "location": "",
-    "warning": "",  # used for warning icon and text in addons panel
-    "wiki_url": "",
-    "tracker_url": "",
-    "category": "Object"
-}
-# TODO: Fill out further, check https://wiki.blender.org/wiki/Process/Addons/Guidelines/metainfo.
 import bpy
 import math
 from math import degrees, asin
@@ -211,6 +187,10 @@ class MAASettings(PropertyGroup):
                ]
     )
     printout_mode_def = 'Angles'
+
+# -------------------------------------------------------------------
+#   Operators
+# -------------------------------------------------------------------
 
 
 class RestoreDefaults(Operator):
@@ -506,18 +486,6 @@ class ShowAngleComponents(Operator):
         return {'FINISHED'}
 
 
-class ChangeToStageSim(Operator):
-    bl_idname = "wm.change_to_stagesim"
-    bl_label = "Change to Stage Simulator"
-
-    def execute(self, context):
-
-        bpy.context.window.scene = bpy.data.scenes["StageSim Scene"]
-        bpy.context.window.workspace = bpy.data.workspaces['Stage Simulator']
-
-        return {'FINISHED'}
-
-
 class XSecLamella(Operator):
     bl_idname = "object.xsec_lamella"
     bl_label = "Cross-section"
@@ -623,10 +591,6 @@ class MagicAnglesAnimatorPanel(Panel):
         layout.operator('wm.lamella_position_reset')
         layout.operator("wm.restore_defaults")
         # layout.operator("ANIM_OT_keyframe_clear_v3d")
-        row3 = layout.row()
-        row3.scale_y = 1.75
-        row3.operator("wm.change_to_postsim")
-        row3.operator("wm.change_to_stagesim")
 
         box = layout.box()
         row = box.row()
@@ -661,9 +625,9 @@ class MagicAnglesAnimatorPanel(Panel):
         # row.prop(, "frame_start")
         # row.prop(scene, "frame_end")
 
-# ------------------------------------------------------------------------
-# register and unregister
-# ------------------------------------------------------------------------
+# -------------------------------------------------------------------
+#   Register & Unregister
+# -------------------------------------------------------------------
 
 
 __classes__ = (
@@ -672,7 +636,6 @@ __classes__ = (
     LamellaPositionReset,
     MagicAnglesAnimator,
     ShowAngleComponents,
-    ChangeToStageSim,
     XSecLamella,
     PlanViewLamella,
     AnimMode,
