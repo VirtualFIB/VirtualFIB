@@ -21,7 +21,7 @@ This application template is generally not compatible with Blender 2.79 or below
 
 ## How to install
 
-VirtualFIB builds on the Open-Source software Blender, which provides the toolbox to do 3D operations and full freedom to change anything. To install LA we first need to install blender:
+VirtualFIB builds on the Open-Source 3D creation suite Blender, which provides the toolbox to do 3D operations and full freedom to change anything. To install LA we first need to install blender:
 
 1. Download and install [Blender](https://www.blender.org/download/). This version was last tested on Blender version 2.93.1 but should be stable for future minor revisions.
 
@@ -78,7 +78,7 @@ To orbit around in 3D in Blender, hold down the middle mouse button or use the X
 
 ![Screenshot: StageSim](/doc_screenshots/doc_stagesim1.jpg?raw=true "StageSim 1")
 
-This model is meant as an aid to navigating the stage in 3D, especially in newer triple-beam systems where hard-to-image-with beams like a laser need to be aligned. A pre-tilted stub with 45 and 60 degree surfaces can be moved using 5-axis controls that should closely mirror those of most FIB systems. The eucentric height is set to 0 in this space, and coincidence for all beams is at (0,0,0). Controls for the Stage Simulator panel are:
+This model is meant as an aid to navigating the stage in 3D, especially in newer triple-beam systems where hard-to-image-with beams like a laser need to be aligned. A pre-tilted stub with 54 and 36 degree surfaces can be moved using 5-axis controls that should closely mirror those of most FIB systems. The eucentric height is set to 0 in this space, and coincidence for all beams is at (0,0,0). Controls for the Stage Simulator panel are:
 
 <img align="left" width="250" src="/doc_screenshots/doc_stagesim2.jpg">
 
