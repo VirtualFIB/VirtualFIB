@@ -1,5 +1,5 @@
 # VirtualFIB
-VirtualFIB is a Blender application template, to simplify and automate what we need to simulate a few different situations you might encounter when doing FIB technique development. It currently includes the Liftout Animator to animate *in situ* liftout, the Post Welder which is a copy of the Liftout Animator with a controllable half-grid post in the chamber, and finally the Stage Simulator, which aims to help understanding sample orientation in triple-beam instruments.
+VirtualFIB is a Blender application template, simplifying and automating what we need to simulate a few different situations you might encounter when doing FIB technique development. It currently includes the Liftout Animator to animate *in situ* liftout, the Post Welder which is a copy of the Liftout Animator with a controllable half-grid post in the chamber, and finally the Stage Simulator, which aims to help understanding sample orientation in triple-beam instruments.
 
 ## Table of contents
 * [Requirements](#requirements)
@@ -21,11 +21,11 @@ This application template is generally not compatible with Blender 2.79 or below
 
 ## How to install
 
-Liftout-Animator (LOA) builds on the Open-Source software Blender, which provides the toolbox to do 3D operations and full freedom to change anything. To install LA we first need to install blender:
+VirtualFIB builds on the Open-Source software Blender, which provides the toolbox to do 3D operations and full freedom to change anything. To install LA we first need to install blender:
 
-1. Download and install [Blender](https://www.blender.org/download/). This version was last tested on Blender version 2.91.2 but should be stable for future minor revisions.
+1. Download and install [Blender](https://www.blender.org/download/). This version was last tested on Blender version 2.93.1 but should be stable for future minor revisions.
 
-2. Download .zip of LOA code from this repository.
+2. Download .zip of VirtualFIB code from this repository.
 
 3. Install and run Blender, then click the blender icon in the top left toolbar and select Install Application Template
 
@@ -33,23 +33,24 @@ Liftout-Animator (LOA) builds on the Open-Source software Blender, which provide
 
 ## Usage
 
-After install, when you now open Blender the [Splash Screen](https://docs.blender.org/manual/en/dev/interface/window_system/splash.html) should now on the left, under New File, have a `...` field where you can select Liftout Animator as shown below.
+After install, when you now open Blender the [Splash Screen](https://docs.blender.org/manual/en/dev/interface/window_system/splash.html) should now on the left, under New File, have a `...` field where you can select VirtualFIB as shown below.
 
 ![Screenshot: Splash screen](/doc_screenshots/doc_splash1.jpg?raw=true "Splash screen")
 
-Alternatively, press `ctrl+N` for a new file and select Liftout Animator. This will load the default LOA file and control window.
+Alternatively, press `ctrl+N` for a new file and select VirtualFIB. This will load the default VirtualFIB file and control window.
 
-In its current incarnation, LOA has two main parts: Liftout Animator and Stage Simulator:
+In its current incarnation, VirtualFIB has three main parts: Liftout Animator, Post Welder and Stage Simulator:
  - In Liftout Animator, the result of different stage rotation, stage tilt and liftout needle rotation can be visualized for cross-section and/or plan-view lamellas.
+ - In Post Welder, you have the full Liftout Animator but with an added half-grid post in the chamber. Post Welder is intended to let you visualize how you can weld your lamella to the post.
  - In Stage Simulator, the stage can be moved around interactively and seen either freely (use the middle mouse button to orbit the view) or from the view of either beam.
 
 The file can be saved, rendered and exported either as animations or still images, and all of Blenders power is available for those who seek it, but to keep the interface from being overwhelming the goal is to have as much complexity as possible hidden by default, with most relevant settings accesible in the Liftout Animator and Stage Simulator control panels.
 
 ### Liftout Animator Window:
 
-When opening a new LOA file, the default view should be a 3D view of a lamella and lift-out needle:
+When opening a new VirtualFIB file, the default view should be a 3D view of a lamella and lift-out needle:
 
-![Screenshot: LOA](/doc_screenshots/doc_loa1.jpg?raw=true "LOA 1")
+![Screenshot: VirtualFIB](/doc_screenshots/doc_loa1.jpg?raw=true "LOA 1")
 
 To orbit around in 3D in Blender, hold down the middle mouse button or use the XYZ axes next to the panel in the upper right part of the screen. The actual controls for liftout have been collected in a single panel and are as follows:
 
@@ -65,9 +66,15 @@ To orbit around in 3D in Blender, hold down the middle mouse button or use the X
  - __Change to Stage Simulator:__ Change mode, scene and workspace to the Stage Simulator (below).
  - __Animation options:__ Click to expand with multiple behind-the-scenes options to tweak the animation or switch granularly between Animation or Live Preview behaviors.
 
+### Post Welder
+
+- Post Welder includes the Beam View and Change to Module menus, the PostSim Liftout Animator which is a copy of the Liftout Animator. These are all described above.
+- The only new interface is the Post Simulator, which can be used to move the half-grid post in X,Y,Z,T and R. Finally, __Zero Post__ sets all post values to 0.
+
 ### Stage Simulator Window:
 
-- Clicking the __Change to Stage Simulator__ button in the Liftout animator will bring you to the Stage Simulator:
+- Clicking the __Change to Stage Simulator__ button in the Liftout animator
+  will bring you to the Stage Simulator:
 
 ![Screenshot: StageSim](/doc_screenshots/doc_stagesim1.jpg?raw=true "StageSim 1")
 
@@ -82,9 +89,9 @@ This model is meant as an aid to navigating the stage in 3D, especially in newer
 
 ## Uh oh, I messed something up:
 
-LOA has been built on top of Blender, and by default tries to hide some of the underlying complexity, both in interface and capability. While some things are hidden, they can easily be brought back, and the full power of Blender is still available to you. But with great power comes great responsibility<sup>[citation needed](https://www.explainxkcd.com/wiki/index.php/285:_Wikipedian_Protester)</sup>, and if unfamiliar with Blender it is easy to change the model or UI in ways you didn't intend, and you may not always be able to `ctrl+Z` to safety.
+VirtualFIB has been built on top of Blender, and by default tries to hide some of the underlying complexity, both in interface and capability. While some things are hidden, they can easily be brought back, and the full power of Blender is still available to you. But with great power comes great responsibility<sup>[citation needed](https://www.explainxkcd.com/wiki/index.php/285:_Wikipedian_Protester)</sup>, and if unfamiliar with Blender it is easy to change the model or UI in ways you didn't intend, and you may not always be able to `ctrl+Z` to safety.
 
-Luckily, since LOA is created as an application template with a dedicated 'default' file, you can always restart Blender or open a new Liftout Animator file, which should reload and go back to where you were. You can freely save your file, and as long as you don't overwrite the bundled *startup.blend* file Blender will reload to a known state.
+Luckily, since VirtualFIB is created as an application template with a dedicated 'default' file, you can always restart Blender or open a new Liftout Animator file, which should reload and go back to where you were. You can freely save your file, and as long as you don't overwrite the bundled *startup.blend* file Blender will reload to a known state.
 
 If you had made changes to your saved file, but messed up the UI in the progress, you can restart Blender to get a new Liftout Animator file, then reload your own file, and in the loading menu click the cogwheel and disable `Load UI`, which should load in your revised file without doing changes to the UI itself.
 
