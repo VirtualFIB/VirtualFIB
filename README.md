@@ -1,5 +1,5 @@
-# liftout-animator
-Blender application template to animate *in situ* liftout. Also includes Stage Simulator, which aims to help understanding sample orientation in triple-beam instruments.
+# VirtualFIB
+VirtualFIB is a Blender application template, to simplify and automate what we need to simulate a few different situations you might encounter when doing FIB technique development. It currently includes the Liftout Animator to animate *in situ* liftout, the Post Welder which is a copy of the Liftout Animator with a controllable half-grid post in the chamber, and finally the Stage Simulator, which aims to help understanding sample orientation in triple-beam instruments.
 
 ## Table of contents
 * [Requirements](#requirements)
@@ -13,7 +13,7 @@ Blender application template to animate *in situ* liftout. Also includes Stage S
 
 ## Requirements
 
-This version was built for Blender version 2.91.2, which is compatible with most operating systems ([Blender requirements](https://www.blender.org/download/requirements/)), but has limited compatability with older macOS versions (requires 10.13 or newer). 
+This version was built for Blender version 2.93, which is compatible with most operating systems ([Blender requirements](https://www.blender.org/download/requirements/)), but has limited compatability with older macOS versions (requires 10.13 or newer). 
 
 It has also been tested with the 2.83 [Long Term Support branch](https://www.blender.org/download/lts/) (2.83.12), which supports macOS 10.12 and above.
 
