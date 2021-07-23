@@ -74,7 +74,7 @@ class BeamViewLiftoutPanel(Panel):
         row1.scale_y = 1.2
         row1.operator("view3d.ebeam_view")
         row1.operator("view3d.ibeam_view")
-        row1.operator("view3d.laser_view")
+        # row1.operator("view3d.laser_view")
 
 
 class BeamViewPostSimPanel(Panel):
@@ -91,7 +91,7 @@ class BeamViewPostSimPanel(Panel):
         row1.scale_y = 1.2
         row1.operator("view3d.ebeam_view")
         row1.operator("view3d.ibeam_view")
-        row1.operator("view3d.laser_view")
+        # row1.operator("view3d.laser_view")
 
 
 class BeamViewStageSimPanel(Panel):
