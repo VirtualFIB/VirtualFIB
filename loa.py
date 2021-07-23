@@ -261,6 +261,7 @@ class MagicAnglesAnimator(Operator):
         current_frame += mytool.rest_frames
 
         # Taking currently selected object as the object to act upon, and resets its rotation
+        # bpy.ops.object.select_all(action='DESELECT') also works!
         ob = bpy.data.objects['Lamella']
         ob.rotation_mode = "ZYX"
         init_euler = (mytool.initial_eulerX*math.pi/180.0,
@@ -308,7 +309,7 @@ class MagicAnglesAnimator(Operator):
         # Conversion of degree rotations into radians
         conv = math.pi/180
         radrot1 = firstrot*conv
-        radrot2 = -secondrot*conv
+        radrot2 = secondrot*conv
         radrot3 = thirdrot*conv
 
         # Move to frame, rotate and create keyframe.

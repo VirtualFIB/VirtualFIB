@@ -94,8 +94,8 @@ class StageSimProps(PropertyGroup):
 
     stage_t: FloatProperty(
         name="Stage T",
-        description="Stage T coordinate in deg, -12d -> 60d",
-        min=-12,
+        description="Stage T coordinate in deg, -36d -> 60d",
+        min=-36,
         max=60,
         update=stage_moved
         )
@@ -154,3 +154,18 @@ def unregister():
 
 if __name__ == "__main__":
     register()
+
+
+# import bpy
+
+# for item in bpy.context.selected_objects:
+#     item.select_set(False)
+    
+# sample = bpy.data.objects['Sample 2.001']
+# stub = bpy.data.objects['Stub_customizable.001']
+    
+# sample.select_set(True)
+# stub.select_set(True)
+
+# bpy.context.view_layer.objects.active = stub
+# bpy.ops.object.parent_set(keep_transform=True)
