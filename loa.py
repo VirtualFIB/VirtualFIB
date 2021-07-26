@@ -188,6 +188,13 @@ class MAASettings(PropertyGroup):
     )
     printout_mode_def = 'Angles'
 
+    reverse_stage_tilt: BoolProperty(
+        name="Reverse stage tilt:",
+        description="Reverse the rotation direction of stage tilt. This counters a bug in some earlier versions of Blender.",
+        default=False
+    )
+    reverse_stage_tilt_def = False
+
 # -------------------------------------------------------------------
 #   Operators
 # -------------------------------------------------------------------
@@ -217,6 +224,7 @@ class RestoreDefaults(Operator):
         mt.rotation_mode = mt.rotation_mode_def
         mt.printout_mode = mt.printout_mode_def
         mt.insert_needle = mt.insert_needle_def
+        mt.reverse_stage_tilt = mt.reverse_stage_tilt_def
 
         return {'FINISHED'}
 
@@ -299,7 +307,10 @@ class MagicAnglesAnimator(Operator):
 
         # Input values, rotations and axis names
         firstrot = mytool.first_rot
-        secondrot = mytool.second_rot
+        if mytool.reverse_stage_tilt is False:
+            secondrot = mytool.second_rot
+        else:
+            secondrot = -mytool.second_rot
         thirdrot = mytool.third_rot
         # axis = 'LON'
 
@@ -606,6 +617,7 @@ class MagicAnglesAnimatorPanel(Panel):
             box.prop(mytool, "rotation_frames")
             box.prop(mytool, "rest_frames")
             box.prop(mytool, "play_on_animate")
+            box.prop(mytool, "reverse_stage_tilt")
             row3 = box.row()
             row3.prop(mytool, "live_update")
             # row3.prop(mytool, "follow_lamella")
