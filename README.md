@@ -15,7 +15,7 @@ VirtualFIB is a Blender application template, simplifying and automating what we
 
 This version was built for Blender version 2.93, which is compatible with most operating systems ([Blender requirements](https://www.blender.org/download/requirements/)), but has limited compatability with older macOS versions (requires 10.13 or newer). 
 
-It has also been tested with the 2.83 [Long Term Support branch](https://www.blender.org/download/lts/) (2.83.12), which supports macOS 10.12 and above.
+It has also been tested with the 2.83 [Long Term Support branch](https://www.blender.org/download/lts/) (2.83.16), which supports macOS 10.12 and above.
 
 This application template is generally not compatible with Blender 2.79 or below.
 
@@ -33,9 +33,9 @@ VirtualFIB builds on the Open-Source 3D creation suite Blender, which provides t
 
 ## Usage
 
-After install, when you now open Blender the [Splash Screen](https://docs.blender.org/manual/en/dev/interface/window_system/splash.html) should now on the left, under New File, have a `...` field where you can select VirtualFIB as shown below.
+After installation, when you open Blender the [Splash Screen](https://docs.blender.org/manual/en/dev/interface/window_system/splash.html) should now on the left, under New File, have a `...` field where you can select VirtualFIB as shown below.
 
-![Screenshot: Splash screen](/doc_screenshots/doc_splash1.jpg?raw=true "Splash screen")
+![Screenshot: Splash screen](/doc_screenshots/doc_splash_1.jpg?raw=true "Splash screen")
 
 Alternatively, press `ctrl+N` for a new file and select VirtualFIB. This will load the default VirtualFIB file and control window.
 
@@ -50,7 +50,7 @@ The file can be saved, rendered and exported either as animations or still image
 
 When opening a new VirtualFIB file, the default view should be a 3D view of a lamella and lift-out needle:
 
-![Screenshot: VirtualFIB](/doc_screenshots/doc_loa1.jpg?raw=true "LOA 1")
+![Screenshot: VirtualFIB](/doc_screenshots/doc_loa_1.jpg?raw=true "LOA 1")
 
 To orbit around in 3D in Blender, hold down the middle mouse button or use the XYZ axes next to the panel in the upper right part of the screen. The actual controls for liftout have been collected in a single panel and are as follows:
 
@@ -68,7 +68,12 @@ To orbit around in 3D in Blender, hold down the middle mouse button or use the X
 
 ### Post Welder
 
+![Screenshot: Postwelder](/doc_screenshots/doc_postwelder_1.jpg?raw=true "Postwelder 1")
+
 - Post Welder includes the Beam View and Change to Module menus, the PostSim Liftout Animator which is a copy of the Liftout Animator. These are all described above.
+
+<img align="left" width="250" src="/doc_screenshots/doc_postwelder_2.jpg">
+
 - The only new interface is the Post Simulator, which can be used to move the half-grid post in X,Y,Z,T and R. Finally, __Zero Post__ sets all post values to 0.
 
 ### Stage Simulator Window:
@@ -76,11 +81,11 @@ To orbit around in 3D in Blender, hold down the middle mouse button or use the X
 - Clicking the __Change to Stage Simulator__ button in the Liftout animator
   will bring you to the Stage Simulator:
 
-![Screenshot: StageSim](/doc_screenshots/doc_stagesim1.jpg?raw=true "StageSim 1")
+![Screenshot: StageSim](/doc_screenshots/doc_stagesim_1.jpg?raw=true "StageSim 1")
 
 This model is meant as an aid to navigating the stage in 3D, especially in newer triple-beam systems where hard-to-image-with beams like a laser need to be aligned. A pre-tilted stub with 54 and 36 degree surfaces can be moved using 5-axis controls that should closely mirror those of most FIB systems. The eucentric height is set to 0 in this space, and coincidence for all beams is at (0,0,0). Controls for the Stage Simulator panel are:
 
-<img align="left" width="250" src="/doc_screenshots/doc_stagesim2.jpg">
+<img align="left" width="250" src="/doc_screenshots/doc_stagesim_2.jpg">
 
 - __Stage X/Y/Z/R/T:__ Common control axes for FIB stages. To move the stage click and drag horizontally to change values, or use the keyboard to enter specific values.
 - __Zero Stage:__ Set all axes to 0
