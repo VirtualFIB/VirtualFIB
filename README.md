@@ -54,7 +54,7 @@ When opening a new VirtualFIB file, the default view should be a 3D view of a la
 
 To orbit around in 3D in Blender, hold down the middle mouse button or use the XYZ axes next to the panel in the upper right part of the screen. The actual controls for liftout have been collected in a single panel and are as follows:
 
-<img align="left" width="250" src="/doc_screenshots/doc_loa2.jpg">
+<img align="left" width="250" src="/doc_screenshots/doc_loa_2.jpg">
 
  - __Stage Rotation/Stage Tilt/Needle Rotation:__ These are the degrees of freedom for liftout: You can control the stage rotation and tilt axis when lifting out, as well as the rotation around the liftout needle axis.
  - __Play/Pause:__ Starts and stops the animation.
@@ -68,11 +68,9 @@ To orbit around in 3D in Blender, hold down the middle mouse button or use the X
 
 ### Post Welder
 
-![Screenshot: Postwelder](/doc_screenshots/doc_postwelder_1.jpg?raw=true "Postwelder 1")
-
 - Post Welder includes the Beam View and Change to Module menus, the PostSim Liftout Animator which is a copy of the Liftout Animator. These are all described above.
 
-<img align="left" width="250" src="/doc_screenshots/doc_postwelder_2.jpg">
+![Screenshot: Postwelder](/doc_screenshots/doc_postwelder_1.jpg?raw=true "Postwelder 1")
 
 - The only new interface is the Post Simulator, which can be used to move the half-grid post in X,Y,Z,T and R. Finally, __Zero Post__ sets all post values to 0.
 
