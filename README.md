@@ -15,7 +15,7 @@ VirtualFIB is a Blender application template, simplifying and automating what we
 
 This version was built for Blender version 2.93, which is compatible with most operating systems ([Blender requirements](https://www.blender.org/download/requirements/)), but has limited compatability with older macOS versions (requires 10.13 or newer). 
 
-It has also been tested with the 2.83 [Long Term Support branch](https://www.blender.org/download/lts/) (2.83.16), which supports macOS 10.12 and above.
+It has also been tested with the 2.83 [Long Term Support branch](https://www.blender.org/download/lts/) (2.83.16), which supports macOS 10.12 and above. Note: If using 2.83 LTS the stage tilt axis may be reversed. Counter this by checking the `Reverse stage tilt` option in the Animation Options.
 
 This application template is generally not compatible with Blender 2.79 or below.
 
