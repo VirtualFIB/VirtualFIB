@@ -81,7 +81,11 @@ To orbit around in 3D in Blender, hold down the middle mouse button or use the X
 
 ![Screenshot: StageSim](/doc_screenshots/doc_stagesim_1.jpg?raw=true "StageSim 1")
 
-This model is meant as an aid to navigating the stage in 3D, especially in newer triple-beam systems where hard-to-image-with beams like a laser need to be aligned. A pre-tilted stub with 54 and 36 degree surfaces can be moved using 5-axis controls that should closely mirror those of most FIB systems. The eucentric height is set to 0 in this space, and coincidence for all beams is at (0,0,0). Controls for the Stage Simulator panel are:
+This model is meant as an aid to navigating the stage in 3D, especially in newer triple-beam systems where hard-to-image-with beams like a laser need to be aligned. A pre-tilted stub with 54 and 36 degree surfaces can be moved using 5-axis controls that should closely mirror those of most FIB systems. 
+
+(Note 04/08/2021: The stub didn't get updated to the 54 and 36 degree one for M&M, and is an older prototype with 45 and 60 degree surfaces. This will be fixed in an upcoming update. -A)
+
+The eucentric height is set to 0 in this space, and coincidence for all beams is at (0,0,0). Controls for the Stage Simulator panel are:
 
 <img align="left" width="250" src="/doc_screenshots/doc_stagesim_2.jpg">
 
