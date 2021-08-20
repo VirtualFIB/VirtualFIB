@@ -21,17 +21,28 @@ from bpy.types import (Operator,
                        )
 from bpy.props import FloatProperty
 from math import radians as rad
+from math import cos, sin
 
 
 def stage_moved(self, context):
     # bpy.data.objects['Stage'].pose.bones['Tilt axis'], "rotation_quaternion")
     props = bpy.context.scene.StageSim_pointer
-    bones = bpy.data.objects['Stage Armature'].pose.bones
-    bones["T Bone"].rotation_mode = "XYZ"
-    bones["T Bone"].rotation_euler[0] = rad(props.stage_t)
-    bones["R Bone"].rotation_mode = "XYZ"
-    bones["R Bone"].rotation_euler[1] = rad(props.stage_r)
-    bones["XYZ Bone"].location = [-props.stage_x, props.stage_z, props.stage_y]
+    stub = bpy.data.objects['Stub_customizable_geo']
+    stub.rotation_mode = "ZYX"
+    stub_rz = rad(props.stage_r)
+    stub_rx = rad(props.stage_t)
+    stub_x = - props.stage_x
+    stub_y = - props.stage_y * cos(-stub_rx) + props.stage_z * sin(-stub_rx)
+    stub_z = props.stage_y * sin(-stub_rx) + props.stage_z * cos(-stub_rx)
+    stub.location = [stub_x, stub_y, stub_z]
+    stub.rotation_euler[2] = stub_rz
+    stub.rotation_euler[0] = stub_rx
+    # bones = bpy.data.objects['Stage Armature'].pose.bones
+    # bones["T Bone"].rotation_mode = "XYZ"
+    # bones["T Bone"].rotation_euler[0] = rad(props.stage_t)
+    # bones["R Bone"].rotation_mode = "XYZ"
+    # bones["R Bone"].rotation_euler[1] = rad(props.stage_r)
+    # bones["XYZ Bone"].location = [-props.stage_x, props.stage_z, props.stage_y]
 
 # -------------------------------------------------------------------
 #   Operators
@@ -114,9 +125,7 @@ class StageSimPanel(Panel):
         scene = context.scene
         pointer = scene.StageSim_pointer
 
-        layout.label(text=" Stage coordinates:")
-
-        col1 = layout.column(align=True)
+        col1 = layout.column(align=True, heading="Stage coordinates:")
         col1.prop(pointer, "stage_x")
         col1.prop(pointer, "stage_y")
         col1.prop(pointer, "stage_z")
@@ -124,6 +133,12 @@ class StageSimPanel(Panel):
         col1.prop(pointer, "stage_r")
 
         layout.operator("object.zero_stage")
+
+        stubmod = bpy.data.objects["Stub_customizable_geo"].modifiers["GeometryNodes"]
+        col2 = layout.column(align=True, heading="Pre-tilt angles")
+        col2.prop(stubmod, '["Input_17"]', text="Angle 1 (Blue)")
+        col2.prop(stubmod, '["Input_19"]', text="Angle 2 (Red)")
+
 
 # -------------------------------------------------------------------
 #   Register & Unregister
