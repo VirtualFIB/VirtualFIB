@@ -25,7 +25,6 @@ from math import cos, sin
 
 
 def stage_moved(self, context):
-    # bpy.data.objects['Stage'].pose.bones['Tilt axis'], "rotation_quaternion")
     props = bpy.context.scene.StageSim_pointer
     stub = bpy.data.objects['Stub_customizable_geo']
     stub.rotation_mode = "ZYX"
@@ -37,12 +36,6 @@ def stage_moved(self, context):
     stub.location = [stub_x, stub_y, stub_z]
     stub.rotation_euler[2] = stub_rz
     stub.rotation_euler[0] = stub_rx
-    # bones = bpy.data.objects['Stage Armature'].pose.bones
-    # bones["T Bone"].rotation_mode = "XYZ"
-    # bones["T Bone"].rotation_euler[0] = rad(props.stage_t)
-    # bones["R Bone"].rotation_mode = "XYZ"
-    # bones["R Bone"].rotation_euler[1] = rad(props.stage_r)
-    # bones["XYZ Bone"].location = [-props.stage_x, props.stage_z, props.stage_y]
 
 # -------------------------------------------------------------------
 #   Operators
@@ -72,6 +65,8 @@ class StageSimProps(PropertyGroup):
         description="Stage X coordinate, -155 mm -> 155 mm",
         min=-155,
         max=155,
+        soft_min=-10,
+        soft_max=10,
         update=stage_moved
         )
     stage_x_def = 0
@@ -81,6 +76,8 @@ class StageSimProps(PropertyGroup):
         description="Stage Y coordinate, -155 mm -> 155 mm",
         min=-155,
         max=155,
+        soft_min=-10,
+        soft_max=10,
         update=stage_moved
         )
     stage_y_def = 0
@@ -90,6 +87,8 @@ class StageSimProps(PropertyGroup):
         description="Stage Z coordinate, defined as 0 at Eucentric, -20 mm -> 20 mm",
         min=-20,
         max=20,
+        soft_min=-10,
+        soft_max=10,
         update=stage_moved
         )
     stage_z_def = 0
@@ -106,8 +105,10 @@ class StageSimProps(PropertyGroup):
     stage_t: FloatProperty(
         name="Stage T",
         description="Stage T coordinate in deg, -36d -> 60d",
-        min=-36,
-        max=60,
+        min=-180,
+        max=180,
+        soft_min=-36,
+        soft_max=60,
         update=stage_moved
         )
     stage_t_def = 0
